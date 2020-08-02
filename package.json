@@ -12,9 +12,6 @@
     "serve:dev": "webpack --mode 'development' && npx serve dist -s",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "Daniel Valderrama Mendoza <dny9919@gmail.com>",
-  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.11.0",
     "@babel/preset-env": "^7.11.0",
@@ -39,5 +36,15 @@
     "extends": [
       "./node_modules/standard/eslintrc.json"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielVM19/datamundo.git"
+  },
+  "author": "Daniel Valderrama Mendoza <dny9919@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DanielVM19/datamundo/issues"
+  },
+  "homepage": "https://github.com/DanielVM19/datamundo#readme"
 }

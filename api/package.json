@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Daniel Valderrama Mendoza <dny9919@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "apollo-server-express": "2.14.2",
     "bcrypt": "3.0.6",
@@ -28,5 +28,13 @@
     "prettier": "^2.0.5"
   },
   "keywords": [],
-  "description": ""
+  "description": "Consulta la información sobre cualquier país y podras saber datos sobre su población.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielVM19/datamundo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DanielVM19/datamundo/issues"
+  },
+  "homepage": "https://github.com/DanielVM19/datamundo#readme"
 }
