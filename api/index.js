@@ -40,7 +40,7 @@ const errorHandler = (err, res, next) => {
 app.use(errorHandler)
 server.applyMiddleware({ app, path: '/graphql' })
 
-app.get('/Population', function (res) {
+app.get('/Population', function (req, res) {
   res.send(Population)
 })
 

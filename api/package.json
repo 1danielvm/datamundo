@@ -1,5 +1,5 @@
 {
-  "name": "curso-avanzado-graphql-server",
+  "name": "datamundo",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,10 @@
     "uuid": "3.3.2"
   },
   "devDependencies": {
-    "nodemon": "1.19.0"
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "nodemon": "1.19.0",
+    "prettier": "^2.0.5"
   },
   "keywords": [],
   "description": ""
