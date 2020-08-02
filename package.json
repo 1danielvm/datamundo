@@ -30,12 +30,14 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
-  "standard":{
+  "standard": {
     "ignore": [
       "api/**"
     ]
   },
   "eslintConfig": {
-    "extends": ["./node_modules/standard/eslintrc.json"]
+    "extends": [
+      "./node_modules/standard/eslintrc.json"
+    ]
   }
 }
