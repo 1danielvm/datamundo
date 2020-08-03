@@ -64,6 +64,17 @@ module.exports = {
             presets: ['@babel/preset-env', '@babel/preset-react']
           }
         }
+      },
+      {
+        test: /\.(jpg|png|gif|svg)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            fallback: 'file-loader',
+            name: 'images/[name].[hash].[ext]'
+          }
+        }
       }
     ]
   }

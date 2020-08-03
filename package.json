@@ -9,6 +9,7 @@
     "lint": "standard",
     "lint-fix": "standard --fix",
     "dev": "webpack-dev-server",
+    "server:api": "json-server db.json",
     "serve:dev": "webpack --mode 'development' && npx serve dist -s",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,11 +22,17 @@
     "standard": "^14.3.4",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "json-server": "^0.16.1"
   },
   "dependencies": {
+    "chart.js": "^2.9.3",
+    "file-loader": "^6.0.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-chartjs-2": "^2.10.0",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.1",
+    "url-loader": "^4.1.0"
   },
   "standard": {
     "ignore": [
