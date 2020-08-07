@@ -8,6 +8,16 @@ module.exports = {
     filename: 'app.bundle.js',
     publicPath: '/'
   },
+  devServer: {
+    port: 8080,
+    contentBase: './',
+    watchOptions: {
+      poll: true
+    }
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   plugins: [
     new HtmlWebpackPlugin(
       {
@@ -56,13 +66,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
+          loader: 'babel-loader'
         }
       },
       {

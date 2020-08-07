@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Svg, Line, Text } from './styles'
+import { Svg } from './styles'
 
 export function Logo (props) {
   return (
@@ -48,10 +48,6 @@ export function Logo (props) {
         </g>
         <style />
       </Svg>
-      <div>
-        <Line />
-        <Text>En este website encontrarás datos sobre la población mundial, pero antes una breve explicación !</Text>
-      </div>
     </>
   )
 }

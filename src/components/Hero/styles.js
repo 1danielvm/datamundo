@@ -21,11 +21,27 @@ export const Content = styled.div`
   padding: 13px 20px;
   margin-bottom: 40px;
 `
-export const Title = styled.h1`
+export const Title = styled.span`
   color: #26a1c6;
+  font-size: 2.5em;
 `
 export const Texto = styled.h1`
   color: #363636;
   font-weight: 300;
   font-size: 1em;
+`
+
+export const Line = styled.div`
+  background-color: #363636;
+  height: 2px;
+  width: 300px;
+  margin: 0 auto;
+  opacity: 0.6;
+  border-radius: 10px;
+`
+export const Text = styled.p`
+  padding: 20px;
+  color: #363636;
+  text-align: center;
+  font-size: 1.3em;
 `
