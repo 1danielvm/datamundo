@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import { Home } from './components/Home'
 import TopList from './Pages/TopList'
+import Country from './Pages/Country'
 import { NotFound } from './Pages/NotFound'
 import { Loading } from './Pages/Loading'
 import { GlobalStyle } from './GlobalStyles'
@@ -17,23 +18,7 @@ const App = () => {
       .then(data => setData(data))
   }, [])
 
-  // const numberList = data.countries(item => Number(item.Population))
-  // if (numberList.length > 10) {
-  //   numberList.length = 10
-  // }
-  // const numberList = filter.map(item => Number(item.Population))
-  // const nameList = data.countries(item => item.countryName)
-  // if (nameList.length > 10) {
-  //   nameList.length = 10
-  // }
-  // console.log(nameList)
-
-  // if (numberList.length > 10) {
-  //   numberList.length = 10
-  // }
-
-  console.log(data[1])
-  return data.length === 2 ? (
+  return data.length === 0 ? (
     <>
       <GlobalStyle />
       <Loading />
@@ -44,7 +29,8 @@ const App = () => {
         <GlobalStyle />
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/TopList' component={TopList} item={data[1]} />
+          <Route exact path='/:id' component={Country} />
+          <Route exact path='/TopList' component={TopList} />
           <Route component={NotFound} default />
         </Switch>
       </BrowserRouter>

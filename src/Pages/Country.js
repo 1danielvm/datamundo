@@ -7,7 +7,7 @@ import { Loading } from './Loading'
 import CountUp from 'react-countup'
 import getData from '../utils/getData'
 
-export const TopList = () => {
+export const Country = () => {
   const API = 'http://localhost:3000/data'
   const [data, setData] = useState([])
 
@@ -83,4 +83,4 @@ export const TopList = () => {
   )
 }
 
-export default TopList
+export default Country
