@@ -16,6 +16,10 @@ ul, li, h1, h2, h3, p, button {
   padding: 0;
 }
 
+a{
+  text-decoration: none;
+}
+
 ul {
   list-style: none;
 }

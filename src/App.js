@@ -1,40 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import { Route, Switch, BrowserRouter } from 'react-router-dom'
+import React, { Suspense } from 'react'
+import { Router } from '@reach/router'
 import { Home } from './components/Home'
+import { Logo } from './components/Logo'
 import TopList from './Pages/TopList'
-import Country from './Pages/Country'
 import { NotFound } from './Pages/NotFound'
-import { Loading } from './Pages/Loading'
+import { Country } from './Pages/Country'
+
 import { GlobalStyle } from './GlobalStyles'
-import { ThemeProvider } from './components/ThemeContext'
-import getData from './utils/getData'
 
 const App = () => {
-  const API = 'http://localhost:3000/data'
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    getData(API)
-      .then(data => setData(data))
-  }, [])
-
-  return data.length === 0 ? (
-    <>
+  return (
+    <Suspense fallback={<div />}>
       <GlobalStyle />
-      <Loading />
-    </>
-  ) : (
-    <ThemeProvider>
-      <BrowserRouter>
-        <GlobalStyle />
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/:id' component={Country} />
-          <Route exact path='/TopList' component={TopList} />
-          <Route component={NotFound} default />
-        </Switch>
-      </BrowserRouter>
-    </ThemeProvider>
+      <Logo />
+      <Router>
+        <NotFound default />
+        <Home path='/' />
+        <Country path='country/:countryId' />
+        <TopList path='/TopList' />
+      </Router>
+    </Suspense>
   )
 }
 export default App

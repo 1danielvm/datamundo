@@ -17,7 +17,7 @@ export const Hero = () => {
             start={7801914859}
             end={7801915909}
             separator='.'
-            duration={5}
+            duration={3}
             delay={0}
           >
             {({ countUpRef }) => (

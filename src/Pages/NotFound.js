@@ -1,5 +1,13 @@
 import React from 'react'
+import { Title, Link } from './styled'
 
 export const NotFound = () => (
-  <h1>Esta página no existe D:</h1>
+  <>
+    <Title>
+      <Link to='/'>
+      Esta página no existe 😢,
+      volver al inicio
+      </Link>
+    </Title>
+  </>
 )

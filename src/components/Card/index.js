@@ -1,5 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link } from '@reach/router'
+import getData from '../../utils/getData'
 import {
   Image,
   Line,
@@ -11,10 +12,9 @@ import {
   Container,
   Encabezado,
   Button,
-  Contentbuttons,
-  Search
+  Contentbuttons
 } from './styles'
-
+import CountriesList from '../Search'
 import imgPoblacion from '../../images/poblacion.png'
 import imgCambioAnual from '../../images/cambioAnual.png'
 import imgCambioNeto from '../../images/cambioNeto.png'
@@ -26,14 +26,15 @@ import imgEdadMedia from '../../images/edadMedia.png'
 import imgPopUrbano from '../../images/popUrbano.png'
 
 export function Card () {
+  const API = 'http://localhost:3000/data'
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    getData(API)
+      .then(data => setData(data))
+  }, [])
   return (
     <>
-      <Contentbuttons>
-        <Link to='/TopList'>
-          <Button>TOP 10</Button>
-        </Link>
-        <Search placeholder='busca un país' />
-      </Contentbuttons>
       <Container>
         <Encabezado> Tipos de datos</Encabezado>
         <Content>
@@ -79,7 +80,7 @@ export function Card () {
         <Contentdos>
           <div>
             <Titledos>Migrantes</Titledos>
-            <Text>Personas extrageras radicadas en el país registradas en el año</Text>
+            <Text>Personas extrangeras radicadas en el país registradas en el año</Text>
           </div>
           <Image alt='imagen del planeta tierra' src={imgMigrantes} />
         </Contentdos>
@@ -108,6 +109,12 @@ export function Card () {
           </div>
         </Content>
       </Container>
+      <Contentbuttons>
+        <Link to='/TopList'>
+          <Button>TOP 10 MUNDIAL</Button>
+        </Link>
+        <CountriesList data={data} />
+      </Contentbuttons>
     </>
   )
 }

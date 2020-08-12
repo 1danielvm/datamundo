@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { Logo } from '../components/Logo'
-import { Line, Title2, Container, Title3, Conteo } from './styled'
+import {
+  Line,
+  Title2,
+  Container,
+  Title3,
+  Conteo,
+  Back,
+  Image
+} from './styled'
 import { Doughnut } from 'react-chartjs-2'
 import { GlobalStyle } from '../GlobalStyles'
 import { Loading } from './Loading'
+import imgPoblacion from '../images/poblacion.png'
 import CountUp from 'react-countup'
 import getData from '../utils/getData'
 
 export const TopList = () => {
   const API = 'http://localhost:3000/data'
   const [data, setData] = useState([])
-
   useEffect(() => {
     getData(API)
       .then(data => setData(data))
@@ -46,7 +53,6 @@ export const TopList = () => {
       }
     ]
   }
-  console.log(dataChart)
   return data.length === 0 ? (
     <>
       <GlobalStyle />
@@ -54,8 +60,8 @@ export const TopList = () => {
     </>
   ) : (
     <>
-      <Logo />
       <Line />
+      <Back onClick={() => window.history.go(-1)}>Atrás</Back>
       <Title2>Top 10</Title2>
       <Doughnut data={dataChart} options={{}} />
       <Container>
@@ -71,6 +77,7 @@ export const TopList = () => {
             >
               {({ countUpRef }) => (
                 <div>
+                  <Image alt='imagen de poblacion mundial' src={imgPoblacion} />
                   <Conteo ref={countUpRef} />
                 </div>
               )}

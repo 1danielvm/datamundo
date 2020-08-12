@@ -1,47 +1,47 @@
 import React, { useEffect, useState } from 'react'
-import { Logo } from '../components/Logo'
-import { Line, Title2, Container, Title3, Conteo } from './styled'
+import { Line, Title2, Container, ConteoInfo, TitleInfo, TitleInfodos, Content, Contentdos, ImageInfo, Back } from './styled'
+import imgPoblacion from '../images/poblacion.png'
+import imgCambioAnual from '../images/cambioAnual.png'
+import imgCambioNeto from '../images/cambioNeto.png'
+import imgDensidad from '../images/densidadPop.png'
+import imgAreaTierra from '../images/areaTierra.png'
+import imgMigrantes from '../images/migracion.png'
+import imgFertilidad from '../images/fertilidad.png'
+import imgEdadMedia from '../images/edadMedia.png'
+import imgPopUrbano from '../images/popUrbano.png'
 import { Doughnut } from 'react-chartjs-2'
 import { GlobalStyle } from '../GlobalStyles'
 import { Loading } from './Loading'
 import CountUp from 'react-countup'
 import getData from '../utils/getData'
 
-export const Country = () => {
+export const Country = ({ countryId }) => {
   const API = 'http://localhost:3000/data'
   const [data, setData] = useState([])
+  const obtenerIdPorURL = Number(countryId)
 
   useEffect(() => {
     getData(API)
       .then(data => setData(data))
   }, [])
   function filtrarTopPorID (obj) {
-    if ((obj.id) <= 10) {
+    if ((obj.id) === obtenerIdPorURL) {
       return true
     } else {
       return false
     }
   }
-
   const arrPorID = data.filter(filtrarTopPorID)
   const dataChart = {
-    labels: arrPorID.map(item => item.countryName),
+    labels: ['Población mundial', 'Poblacion país'],
     datasets: [
       {
-        label: 'Top 10 de los paises con más población',
-        data: arrPorID.map(item => Number(item.Population)),
+        label: 'Comparación a nivel mundial',
+        data: [(7801915909 - arrPorID.map(item => Number(item.Population))), arrPorID.map(item => Number(item.Population))],
         fill: true,
         backgroundColor: [
-          'rgba(81, 30, 114, 0.6)',
-          'rgba(38, 165, 152, 0.6)',
-          'rgba(242, 190, 33, 0.6)',
-          'rgba(242, 150, 38, 0.6)',
-          'rgba(242, 75, 60, 0.6)',
-          'rgba(48, 138, 89, 0.6)',
-          'rgba(64, 214, 133, 0.6)',
-          'rgba(214, 114, 54, 0.6)',
-          'rgba(21, 73, 138, 0.6)',
-          'rgba(43, 120, 214, 0.6)'
+          'rgba(54, 54, 54, 0.3)',
+          'rgba(242, 150, 38, 0.9)'
         ]
       }
     ]
@@ -54,30 +54,230 @@ export const Country = () => {
     </>
   ) : (
     <>
-      <Logo />
       <Line />
-      <Title2>Top 10</Title2>
+      <Back onClick={() => window.history.go(-1)}>Atrás</Back>
+      {arrPorID.map(item => (
+        <Title2 key={item.id}>{item.countryName}</Title2>
+      ))}
       <Doughnut data={dataChart} options={{}} />
       <Container>
-        {arrPorID.map(item => (
-          <div key={item.id}>
-            <Title3>{item.countryName}</Title3>
-            <CountUp
-              start={999999999}
-              end={Number(item.Population)}
-              separator='.'
-              duration={2}
-              delay={0}
-            >
-              {({ countUpRef }) => (
-                <div>
-                  <Conteo ref={countUpRef} />
-                </div>
-              )}
-            </CountUp>
-            <Line />
+        <Content>
+          <ImageInfo alt='imagen del planeta tierra' src={imgPoblacion} />
+          <div>
+            <TitleInfo>Población</TitleInfo>
+            {arrPorID.map(item => (
+              <div key={item.id}>
+                <CountUp
+                  start={9999999}
+                  end={Number(item.Population)}
+                  separator='.'
+                  duration={2}
+                  delay={0}
+                >
+                  {({ countUpRef }) => (
+                    <div>
+                      <ConteoInfo ref={countUpRef} />
+                    </div>
+                  )}
+                </CountUp>
+              </div>
+            ))}
           </div>
-        ))}
+        </Content>
+        <Line />
+        <Contentdos>
+          <div>
+            <TitleInfodos>Cambio Anual</TitleInfodos>
+            {arrPorID.map(item => (
+              <div key={item.id}>
+                <CountUp
+                  start={5}
+                  end={Number(item.yearlyChange)}
+                  separator='.'
+                  duration={2}
+                  decimals={2}
+                  delay={0}
+                >
+                  {({ countUpRef }) => (
+                    <div>
+                      <ConteoInfo ref={countUpRef} />
+                    </div>
+                  )}
+                </CountUp>
+              </div>
+            ))}
+          </div>
+          <ImageInfo alt='imagen del planeta tierra' src={imgCambioAnual} />
+        </Contentdos>
+        <Line />
+        <Content>
+          <ImageInfo alt='imagen del planeta tierra' src={imgCambioNeto} />
+          <div>
+            <TitleInfo>Cambio neto</TitleInfo>
+            {arrPorID.map(item => (
+              <div key={item.id}>
+                <CountUp
+                  start={9999999}
+                  end={Number(item.Population)}
+                  separator='.'
+                  duration={2}
+                  delay={0}
+                >
+                  {({ countUpRef }) => (
+                    <div>
+                      <ConteoInfo ref={countUpRef} />
+                    </div>
+                  )}
+                </CountUp>
+              </div>
+            ))}
+          </div>
+        </Content>
+        <Line />
+        <Contentdos>
+          <div>
+            <TitleInfodos>Densidad poblacional</TitleInfodos>
+            {arrPorID.map(item => (
+              <div key={item.id}>
+                <CountUp
+                  start={5}
+                  end={Number(item.density)}
+                  separator='.'
+                  duration={2}
+                  delay={0}
+                >
+                  {({ countUpRef }) => (
+                    <div>
+                      <ConteoInfo ref={countUpRef} />
+                    </div>
+                  )}
+                </CountUp>
+              </div>
+            ))}
+          </div>
+          <ImageInfo alt='imagen del planeta tierra' src={imgDensidad} />
+        </Contentdos>
+        <Line />
+        <Content>
+          <ImageInfo alt='imagen del planeta tierra' src={imgAreaTierra} />
+          <div>
+            <TitleInfo>Área Territorial</TitleInfo>
+            {arrPorID.map(item => (
+              <div key={item.id}>
+                <CountUp
+                  start={9999999}
+                  end={Number(item.landArea)}
+                  separator='.'
+                  duration={2}
+                  delay={0}
+                >
+                  {({ countUpRef }) => (
+                    <div>
+                      <ConteoInfo ref={countUpRef} />
+                    </div>
+                  )}
+                </CountUp>
+              </div>
+            ))}
+          </div>
+        </Content>
+        <Line />
+        <Contentdos>
+          <div>
+            <TitleInfodos>Migrantes</TitleInfodos>
+            {arrPorID.map(item => (
+              <div key={item.id}>
+                <CountUp
+                  start={5}
+                  end={Number(item.migrants)}
+                  separator='.'
+                  duration={2}
+                  delay={0}
+                >
+                  {({ countUpRef }) => (
+                    <div>
+                      <ConteoInfo ref={countUpRef} />
+                    </div>
+                  )}
+                </CountUp>
+              </div>
+            ))}
+          </div>
+          <ImageInfo alt='imagen del planeta tierra' src={imgMigrantes} />
+        </Contentdos>
+        <Line />
+        <Content>
+          <ImageInfo alt='imagen del planeta tierra' src={imgFertilidad} />
+          <div>
+            <TitleInfo>Fertilidad</TitleInfo>
+            {arrPorID.map(item => (
+              <div key={item.id}>
+                <CountUp
+                  start={99}
+                  end={Number(item.fertility)}
+                  separator='.'
+                  duration={2}
+                  decimals={2}
+                  delay={0}
+                >
+                  {({ countUpRef }) => (
+                    <div>
+                      <ConteoInfo ref={countUpRef} />
+                    </div>
+                  )}
+                </CountUp>
+              </div>
+            ))}
+          </div>
+        </Content>
+        <Line />
+        <Contentdos>
+          <div>
+            <TitleInfodos>Edad Media</TitleInfodos>
+            {arrPorID.map(item => (
+              <div key={item.id}>
+                <CountUp
+                  start={5}
+                  end={Number(item.medAge)}
+                  separator='.'
+                  duration={2}
+                  delay={0}
+                >
+                  {({ countUpRef }) => (
+                    <div>
+                      <ConteoInfo ref={countUpRef} />
+                    </div>
+                  )}
+                </CountUp>
+              </div>
+            ))}
+          </div>
+          <ImageInfo alt='imagen del planeta tierra' src={imgEdadMedia} />
+        </Contentdos>
+        <Line />
+        <Content>
+          <ImageInfo alt='imagen del planeta tierra' src={imgPopUrbano} />
+          <div>
+            <TitleInfodos>Población urbana</TitleInfodos>
+            {arrPorID.map(item => (
+              <div key={item.id}>
+                <CountUp
+                  start={5}
+                  end={Number(item.urbanPop)}
+                  separator='.'
+                  duration={2}
+                  delay={0}
+                >
+                  {({ countUpRef }) => (
+                    <div>
+                      <ConteoInfo ref={countUpRef} />
+                    </div>
+                  )}
+                </CountUp>
+              </div>
+            ))}
+          </div>
+        </Content>
       </Container>
     </>
   )
